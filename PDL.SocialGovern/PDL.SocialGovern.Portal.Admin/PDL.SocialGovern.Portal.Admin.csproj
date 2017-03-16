@@ -44,6 +44,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=4.4.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.4.0\lib\net45\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.Mvc5.4.0.1\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -206,6 +214,24 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PDL.SocialGovern.Domain\PDL.SocialGovern.Domain.csproj">
+      <Project>{7e2eac12-5a13-430c-b4cc-35f599f1d80d}</Project>
+      <Name>PDL.SocialGovern.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PDL.SocialGovern.Infrastructure\PDL.SocialGovern.Infrastructure.csproj">
+      <Project>{DFAC3DD7-D6C2-4E70-B9EB-3ADE8042EEB3}</Project>
+      <Name>PDL.SocialGovern.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PDL.SocialGovern.Repositories\PDL.SocialGovern.Repositories.csproj">
+      <Project>{C1E18C98-6A1E-461E-B271-8CB0A9CAC7D7}</Project>
+      <Name>PDL.SocialGovern.Repositories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PDL.SocialGovern.Service\PDL.SocialGovern.Service.csproj">
+      <Project>{FA502261-396D-4DB3-81A0-A16B4E1AD640}</Project>
+      <Name>PDL.SocialGovern.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

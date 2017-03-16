@@ -1,4 +1,6 @@
-﻿using StackExchange.Profiling;
+﻿
+using SimpleInjector;
+using StackExchange.Profiling;
 using StackExchange.Profiling.Data;
 using System;
 using System.Configuration;
@@ -13,17 +15,21 @@ namespace PDL.SocialGovern.Infrastructure
         {
             Dispose(false);
         }
-
+        private readonly Container Container;
         private IDbConnection dbConnection;
         public IDbConnection DbConnection
         {
             get
             {
                 if (dbConnection != null)
-                {
                     return dbConnection;
-                }
-                if (ConfigurationManager.AppSettings[""] == Boolean.TrueString)
+
+                dbConnection = Container.GetInstance<IDbConnection>();
+
+
+
+
+                if (ConfigurationManager.ConnectionStrings["PDLConnection"].ConnectionString != null)
                 {
                     dbConnection = new ProfiledDbConnection(dbConnection as DbConnection, MiniProfiler.Current);
                 }

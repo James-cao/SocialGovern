@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PDL.SocialGovern.Service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,8 +9,14 @@ namespace PDL.SocialGovern.Portal.Admin.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IUserInfoService userInfoService;
+        public HomeController(IUserInfoService userInfoService)
+        {
+            this.userInfoService = userInfoService;
+        }
         public ActionResult Index()
         {
+           var ss =  userInfoService.GetUserInfo().ToList();
             return View();
         }
 
