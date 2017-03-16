@@ -212,13 +212,13 @@ namespace PDL.SocialGovern.Infrastructure.Repository
         /// </summary>
         /// <param name="conditions">The conditions.</param>
         /// <returns></returns>
-        public int DeleteList(string conditions)
-        {
-            if (String.IsNullOrEmpty((conditions ?? String.Empty).Trim()))
-                throw new ArgumentException("conditions");
+        //public int DeleteList(string conditions)
+        //{
+        //    if (String.IsNullOrEmpty((conditions ?? String.Empty).Trim()))
+        //        throw new ArgumentException("conditions");
 
-            return ConnectionFactory.DbConnection.DeleteList<T>(conditions, ConnectionFactory.DbTransaction);
-        }
+        //    return ConnectionFactory.DbConnection.DeleteList<T>(conditions, ConnectionFactory.DbTransaction);
+        //}
 
         /// <summary>
         /// Deletes the list asynchronous.
@@ -370,10 +370,10 @@ namespace PDL.SocialGovern.Infrastructure.Repository
         /// <param name="map">The map.</param>
         /// <param name="param">The param.</param>
         /// <returns></returns>
-        public IEnumerable<dynamic> QueryDynamic(string sql, Func<T, T, T> map, object param = null)
-        {
-            return ConnectionFactory.DbConnection.Query(sql, map, param, ConnectionFactory.DbTransaction).AsQueryable();
-        }
+        //public IEnumerable<dynamic> QueryDynamic(string sql, Func<T, T, T> map, object param = null)
+        //{
+        //    return ConnectionFactory.DbConnection.Query(sql, map, param, ConnectionFactory.DbTransaction).AsQueryable();
+        //}
 
         /// <summary>
         /// Gets the list.
@@ -399,10 +399,10 @@ namespace PDL.SocialGovern.Infrastructure.Repository
         /// </summary>
         /// <param name="conditions">The conditions.</param>
         /// <returns></returns>
-        public IEnumerable<T> GetList(string conditions)
-        {
-            return ConnectionFactory.DbConnection.GetList<T>(conditions, ConnectionFactory.DbTransaction);
-        }
+        //public IEnumerable<T> GetList(string conditions)
+        //{
+        //    return ConnectionFactory.DbConnection.GetList<T>(conditions, ConnectionFactory.DbTransaction);
+        //}
 
         /// <summary>
         /// Gets the list paged.
@@ -423,7 +423,7 @@ namespace PDL.SocialGovern.Infrastructure.Repository
         /// <returns></returns>
         public Task<IEnumerable<T>> GetListAsync()
         {
-            return ConnectionFactory.DbConnection.GetListAsync<T>(null, ConnectionFactory.DbTransaction);
+            return ConnectionFactory.DbConnection.GetListAsync<T>(ConnectionFactory.DbTransaction);
         }
 
         /// <summary>
@@ -441,10 +441,10 @@ namespace PDL.SocialGovern.Infrastructure.Repository
         /// </summary>
         /// <param name="conditions">The conditions.</param>
         /// <returns></returns>
-        public Task<IEnumerable<T>> GetListAsync(string conditions)
-        {
-            return ConnectionFactory.DbConnection.GetListAsync<T>(conditions, ConnectionFactory.DbTransaction);
-        }
+        //public Task<IEnumerable<T>> GetListAsync(string conditions)
+        //{
+        //    return ConnectionFactory.DbConnection.GetListAsync<T>(conditions, ConnectionFactory.DbTransaction);
+        //}
 
         /// <summary>
         /// Gets the list paged asynchronous.
@@ -464,20 +464,20 @@ namespace PDL.SocialGovern.Infrastructure.Repository
         /// </summary>
         /// <param name="conditions">The conditions.</param>
         /// <returns></returns>
-        public int RecordCount(string conditions = "")
-        {
-            return ConnectionFactory.DbConnection.RecordCount<T>(conditions, ConnectionFactory.DbTransaction);
-        }
+        //public int RecordCount(string conditions = "")
+        //{
+        //    return ConnectionFactory.DbConnection.RecordCount<T>(conditions, ConnectionFactory.DbTransaction);
+        //}
 
         /// <summary>
         /// Records the count asynchronous.
         /// </summary>
         /// <param name="conditions">The conditions.</param>
         /// <returns></returns>
-        public async Task<int> RecordCountAsync(string conditions)
-        {
-            return await ConnectionFactory.DbConnection.RecordCountAsync<T>(conditions, ConnectionFactory.DbTransaction);
-        }
+        //public async Task<int> RecordCountAsync(string conditions)
+        //{
+        //    return await ConnectionFactory.DbConnection.RecordCountAsync<T>(conditions, ConnectionFactory.DbTransaction);
+        //}
 
         /// <summary>
         /// Executes the sp.

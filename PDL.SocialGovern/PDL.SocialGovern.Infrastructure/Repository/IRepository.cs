@@ -125,7 +125,7 @@ namespace PDL.SocialGovern.Infrastructure.Repository
         /// </summary>
         /// <param name="conditions">The conditions.</param>
         /// <returns></returns>
-        int DeleteList(string conditions);
+        //int DeleteList(string conditions);
 
         /// <summary>
         /// Deletes the list asynchronous.
@@ -224,7 +224,7 @@ namespace PDL.SocialGovern.Infrastructure.Repository
         /// <param name="map">The map.</param>
         /// <param name="param">The param.</param>
         /// <returns></returns>
-        IEnumerable<dynamic> QueryDynamic(string sql, Func<T, T, T> map, object param = null);
+       //IEnumerable<dynamic> QueryDynamic(string sql, Func<T, T, T> map, object param = null);
 
         /// <summary>
         /// Gets the list.
@@ -244,7 +244,7 @@ namespace PDL.SocialGovern.Infrastructure.Repository
         /// </summary>
         /// <param name="conditions">The conditions.</param>
         /// <returns></returns>
-        IEnumerable<T> GetList(string conditions);
+        //IEnumerable<T> GetList(string conditions);
 
         /// <summary>
         /// Gets the list paged.
@@ -274,7 +274,7 @@ namespace PDL.SocialGovern.Infrastructure.Repository
         /// </summary>
         /// <param name="conditions">The conditions.</param>
         /// <returns></returns>
-        Task<IEnumerable<T>> GetListAsync(string conditions);
+        //Task<IEnumerable<T>> GetListAsync(string conditions);
 
         /// <summary>
         /// Gets the list paged asynchronous.
@@ -291,14 +291,14 @@ namespace PDL.SocialGovern.Infrastructure.Repository
         /// </summary>
         /// <param name="conditions">The conditions.</param>
         /// <returns></returns>
-        int RecordCount(string conditions = "");
+       // int RecordCount(string conditions = "");
 
         /// <summary>
         /// Records the count asynchronous.
         /// </summary>
         /// <param name="conditions">The conditions.</param>
         /// <returns></returns>
-        Task<int> RecordCountAsync(string conditions);
+        //Task<int> RecordCountAsync(string conditions);
 
         /// <summary>
         /// Executes the sp.
