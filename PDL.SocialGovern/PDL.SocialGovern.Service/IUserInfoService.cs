@@ -1,9 +1,5 @@
 ﻿using PDL.SocialGovern.Domain;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PDL.SocialGovern.Service
 {
@@ -11,5 +7,10 @@ namespace PDL.SocialGovern.Service
     {
 
         IEnumerable<UserInfo> GetUserInfo();
+        void AddGetUserInfo(UserInfo model);
+
+        void UpdateGetUserInfo(UserInfo model);
+
+        void DeleteUserInfo(long Id);
     }
 }

@@ -525,25 +525,25 @@ namespace PDL.SocialGovern.Infrastructure.Extensions
         /// <param name="transaction"></param>
         /// <param name="commandTimeout"></param>
         /// <returns>Returns a count of records.</returns>
-        public static Task<int> RecordCountAsync<T>(this IDbConnection connection, object whereConditions, IDbTransaction transaction = null, int? commandTimeout = null)
-        {
-            var currenttype = typeof(T);
-            var name = GetTableName(currenttype);
+        //public static Task<int> RecordCountAsync<T>(this IDbConnection connection, object whereConditions, IDbTransaction transaction = null, int? commandTimeout = null)
+        //{
+        //    var currenttype = typeof(T);
+        //    var name = GetTableName(currenttype);
 
-            var sb = new StringBuilder();
-            var whereprops = GetAllProperties(whereConditions).ToArray();
-            sb.Append("Select count(1)");
-            sb.AppendFormat(" from {0}", name);
-            if (whereprops.Any())
-            {
-                sb.Append(" where ");
-                BuildWhere(sb, whereprops, (T)Activator.CreateInstance(typeof(T)));
-            }
+        //    var sb = new StringBuilder();
+        //    var whereprops = GetAllProperties(whereConditions).ToArray();
+        //    sb.Append("Select count(1)");
+        //    sb.AppendFormat(" from {0}", name);
+        //    if (whereprops.Any())
+        //    {
+        //        sb.Append(" where ");
+        //        BuildWhere(sb, whereprops, (T)Activator.CreateInstance(typeof(T)));
+        //    }
 
-            if (Debugger.IsAttached)
-                Trace.WriteLine(String.Format("RecordCount<{0}>: {1}", currenttype, sb));
+        //    if (Debugger.IsAttached)
+        //        Trace.WriteLine(String.Format("RecordCount<{0}>: {1}", currenttype, sb));
 
-            return connection.ExecuteScalarAsync<int>(sb.ToString(), whereConditions, transaction, commandTimeout);
-        }
+        //    return connection.ExecuteScalarAsync<int>(sb.ToString(), whereConditions, transaction, commandTimeout);
+        //}
     }
 }

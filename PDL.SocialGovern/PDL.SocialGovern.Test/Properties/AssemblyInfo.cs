@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("PDL.SocialGovern.Respository")]
+[assembly: AssemblyTitle("PDL.SocialGovern.Test")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("PDL.SocialGovern.Respository")]
+[assembly: AssemblyProduct("PDL.SocialGovern.Test")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("2440abf8-9663-4904-b1a6-06f27116ee3a")]
+[assembly: Guid("91b9f105-cb00-4c9a-a5c2-4f6223b74d69")]
 
 // Version information for an assembly consists of the following four values:
 //

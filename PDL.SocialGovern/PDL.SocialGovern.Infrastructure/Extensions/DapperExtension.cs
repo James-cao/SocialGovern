@@ -595,6 +595,7 @@ namespace PDL.SocialGovern.Infrastructure.Extensions
             return connection.ExecuteScalar<int>(sb.ToString(), parameters, transaction, commandTimeout);
         }
 
+
         /// <summary>
         /// <para>By default queries the table matching the class name</para>
         /// <para>-Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
@@ -608,26 +609,26 @@ namespace PDL.SocialGovern.Infrastructure.Extensions
         /// <param name="transaction"></param>
         /// <param name="commandTimeout"></param>
         /// <returns>Returns a count of records.</returns>
-        public static int RecordCount<T>(this IDbConnection connection, object whereConditions, IDbTransaction transaction = null, int? commandTimeout = null)
-        {
-            var currenttype = typeof(T);
-            var name = GetTableName(currenttype);
+        //public static int RecordCount<T>(this IDbConnection connection, object whereConditions, IDbTransaction transaction = null, int? commandTimeout = null)
+        //{
+        //    var currenttype = typeof(T);
+        //    var name = GetTableName(currenttype);
 
-            var sb = new StringBuilder();
-            var whereprops = GetAllProperties(whereConditions).ToArray();
-            sb.Append("Select count(1)");
-            sb.AppendFormat(" from {0}", name);
-            if (whereprops.Any())
-            {
-                sb.Append(" where ");
-                BuildWhere(sb, whereprops, (T)Activator.CreateInstance(typeof(T)));
-            }
+        //    var sb = new StringBuilder();
+        //    var whereprops = GetAllProperties(whereConditions).ToArray();
+        //    sb.Append("Select count(1)");
+        //    sb.AppendFormat(" from {0}", name);
+        //    if (whereprops.Any())
+        //    {
+        //        sb.Append(" where ");
+        //        BuildWhere(sb, whereprops, (T)Activator.CreateInstance(typeof(T)));
+        //    }
 
-            if (Debugger.IsAttached)
-                Trace.WriteLine(String.Format("RecordCount<{0}>: {1}", currenttype, sb));
+        //    if (Debugger.IsAttached)
+        //        Trace.WriteLine(String.Format("RecordCount<{0}>: {1}", currenttype, sb));
 
-            return connection.ExecuteScalar<int>(sb.ToString(), whereConditions, transaction, commandTimeout);
-        }
+        //    return connection.ExecuteScalar<int>(sb.ToString(), whereConditions, transaction, commandTimeout);
+        //}
 
         //build update statement based on list on an entity
         private static void BuildUpdateSet(object entityToUpdate, StringBuilder sb)

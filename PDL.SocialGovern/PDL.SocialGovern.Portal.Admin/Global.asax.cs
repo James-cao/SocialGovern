@@ -3,6 +3,9 @@ using Autofac.Integration.Mvc;
 using PDL.SocialGovern.Infrastructure;
 using PDL.SocialGovern.Repositories;
 using PDL.SocialGovern.Service;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
 using System.Web.Mvc;
@@ -34,11 +37,11 @@ namespace PDL.SocialGovern.Portal.Admin
 
         private static void SetAutofacContainer()
         {
-            
             var builder = new ContainerBuilder();
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
            // builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerLifetimeScope();
-            builder.RegisterType<ConnectionFactory>().As<IConnectionFactory>().InstancePerLifetimeScope();
+            builder.RegisterType<ConnectionFactory>().As<IConnectionFactory>().InstancePerLifetimeScope();           
+
             builder.RegisterAssemblyTypes(typeof(UserInfoRepository).Assembly)
             .Where(t => t.Name.EndsWith("Repository"))
             .AsImplementedInterfaces().InstancePerLifetimeScope();

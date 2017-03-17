@@ -254,7 +254,7 @@ namespace PDL.SocialGovern.Infrastructure.Repository
         /// <param name="conditions">The conditions.</param>
         /// <param name="orderby">The orderby.</param>
         /// <returns></returns>
-        IEnumerable<T> GetListPaged(int pageNumber, int rowsPerPage, string conditions, string orderby);
+        IEnumerable<T> GetListPaged(int pageNumber, int rowsPerPage, string conditions, string orderby,out int total);
 
         /// <summary>
         /// Gets the list asynchronous.
@@ -284,21 +284,21 @@ namespace PDL.SocialGovern.Infrastructure.Repository
         /// <param name="conditions">The conditions.</param>
         /// <param name="orderby">The orderby.</param>
         /// <returns></returns>
-        Task<IEnumerable<T>> GetListPagedAsync(int pageNumber, int rowsPerPage, string conditions, string orderby);
+        Task<IEnumerable<T>> GetListPagedAsync(int pageNumber, int rowsPerPage, string conditions, string orderby, out int total);
 
         /// <summary>
         /// Records the count.
         /// </summary>
         /// <param name="conditions">The conditions.</param>
         /// <returns></returns>
-       // int RecordCount(string conditions = "");
+        int RecordCount(string conditions = "");
 
         /// <summary>
         /// Records the count asynchronous.
         /// </summary>
         /// <param name="conditions">The conditions.</param>
         /// <returns></returns>
-        //Task<int> RecordCountAsync(string conditions);
+        Task<int> RecordCountAsync(string conditions);
 
         /// <summary>
         /// Executes the sp.

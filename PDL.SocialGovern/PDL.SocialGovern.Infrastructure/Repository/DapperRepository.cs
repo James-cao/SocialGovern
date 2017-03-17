@@ -12,7 +12,7 @@ namespace PDL.SocialGovern.Infrastructure.Repository
  /// The dapper repository.
  /// </summary>
  /// <typeparam name="T"></typeparam>
-    public class DapperRepository<T> : IRepository<T> 
+    public class DapperRepository<T> : IRepository<T>
     {
         #region Properties
 
@@ -46,7 +46,7 @@ namespace PDL.SocialGovern.Infrastructure.Repository
         /// <returns></returns>
         public T Get(object id)
         {
-            
+
             return ConnectionFactory.DbConnection.Get<T>(id, ConnectionFactory.DbTransaction);
         }
 
@@ -412,8 +412,10 @@ namespace PDL.SocialGovern.Infrastructure.Repository
         /// <param name="conditions">The conditions.</param>
         /// <param name="orderby">The orderby.</param>
         /// <returns></returns>
-        public IEnumerable<T> GetListPaged(int pageNumber, int rowsPerPage, string conditions, string @orderby)
+        public IEnumerable<T> GetListPaged(int pageNumber, int rowsPerPage, string conditions, string @orderby, out int total)
         {
+            total = ConnectionFactory.DbConnection.RecordCount<T>(conditions);
+            
             return ConnectionFactory.DbConnection.GetListPaged<T>(pageNumber, rowsPerPage, conditions, orderby, ConnectionFactory.DbTransaction);
         }
 
@@ -454,8 +456,10 @@ namespace PDL.SocialGovern.Infrastructure.Repository
         /// <param name="conditions">The conditions.</param>
         /// <param name="orderby">The orderby.</param>
         /// <returns></returns>
-        public Task<IEnumerable<T>> GetListPagedAsync(int pageNumber, int rowsPerPage, string conditions, string orderby)
+        public Task<IEnumerable<T>> GetListPagedAsync(int pageNumber, int rowsPerPage, string conditions, string orderby, out int total)
         {
+            total = ConnectionFactory.DbConnection.RecordCount<T>(conditions);
+
             return ConnectionFactory.DbConnection.GetListPagedAsync<T>(pageNumber, rowsPerPage, conditions, orderby);
         }
 
@@ -464,20 +468,20 @@ namespace PDL.SocialGovern.Infrastructure.Repository
         /// </summary>
         /// <param name="conditions">The conditions.</param>
         /// <returns></returns>
-        //public int RecordCount(string conditions = "")
-        //{
-        //    return ConnectionFactory.DbConnection.RecordCount<T>(conditions, ConnectionFactory.DbTransaction);
-        //}
+        public int RecordCount(string conditions = "")
+        {
+            return ConnectionFactory.DbConnection.RecordCount<T>(conditions, ConnectionFactory.DbTransaction);
+        }
 
         /// <summary>
         /// Records the count asynchronous.
         /// </summary>
         /// <param name="conditions">The conditions.</param>
         /// <returns></returns>
-        //public async Task<int> RecordCountAsync(string conditions)
-        //{
-        //    return await ConnectionFactory.DbConnection.RecordCountAsync<T>(conditions, ConnectionFactory.DbTransaction);
-        //}
+        public async Task<int> RecordCountAsync(string conditions)
+        {
+            return await ConnectionFactory.DbConnection.RecordCountAsync<T>(conditions, ConnectionFactory.DbTransaction);
+        }
 
         /// <summary>
         /// Executes the sp.
