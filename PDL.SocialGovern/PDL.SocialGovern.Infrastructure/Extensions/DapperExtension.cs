@@ -3,6 +3,7 @@ using Microsoft.CSharp.RuntimeBinder;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
@@ -281,6 +282,45 @@ namespace PDL.SocialGovern.Infrastructure.Extensions
 
             return connection.Query<T>(query, parameters, transaction, true, commandTimeout);
         }
+
+        /// <summary>
+        /// batch insert data.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="connection"></param>
+        /// <param name="entityList"></param>
+        /// <param name="transaction"></param>
+        public static void InsertBatch<T>(this IDbConnection connection, IEnumerable<T> entityList, IDbTransaction transaction = null)
+        {
+            var tblName = GetTableName(entityList.FirstOrDefault());
+            //var tran = (SqlTransaction)transaction;
+            using (var bulkCopy = new SqlBulkCopy(connection as SqlConnection))
+            {
+                bulkCopy.BatchSize = entityList.Count();
+                bulkCopy.DestinationTableName = tblName;
+                var table = new DataTable();
+
+                var props = GetScaffoldableProperties(entityList.FirstOrDefault()).ToList();
+             
+                foreach (var propertyInfo in props)
+                {
+                    bulkCopy.ColumnMappings.Add(propertyInfo.Name, propertyInfo.Name);
+                    table.Columns.Add(propertyInfo.Name, Nullable.GetUnderlyingType(propertyInfo.PropertyType) ?? propertyInfo.PropertyType);
+                }
+                var values = new object[props.Count()];
+
+                foreach (var itemm in entityList)
+                {
+                    for (var i = 0; i < values.Length; i++)
+                    {
+                        values[i] = props[i].GetValue(itemm, null);
+                    }
+                    table.Rows.Add(values);
+                }
+                bulkCopy.WriteToServer(table);
+            }
+        }
+
 
         /// <summary>
         /// <para>Inserts a row into the database</para>

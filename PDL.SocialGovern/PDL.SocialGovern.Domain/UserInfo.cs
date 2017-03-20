@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PDL.SocialGovern.Infrastructure.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,8 @@ namespace PDL.SocialGovern.Domain
 {
     public class UserInfo
     {
-        public int Id { get; set; }
+        [Key]
+        public int ID { get; set; }
 
         public string Name { get; set; }
 

@@ -54,7 +54,7 @@ namespace PDL.SocialGovern.Infrastructure.Repository
         /// <param name="entityToInsert">The entity to insert.</param>
         /// <returns></returns>
         int? Insert(object entityToInsert);
-
+        void InsertBatch(IEnumerable<T> entityList);
         /// <summary>
         /// Inserts the specified entity to insert.
         /// </summary>

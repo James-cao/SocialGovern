@@ -416,7 +416,7 @@ namespace PDL.SocialGovern.Infrastructure.Repository
         {
             total = ConnectionFactory.DbConnection.RecordCount<T>(conditions);
             
-            return ConnectionFactory.DbConnection.GetListPaged<T>(pageNumber, rowsPerPage, conditions, orderby, ConnectionFactory.DbTransaction);
+            return ConnectionFactory.DbConnection.GetListPaged<T>(pageNumber, rowsPerPage, conditions, orderby);
         }
 
         /// <summary>
@@ -504,6 +504,11 @@ namespace PDL.SocialGovern.Infrastructure.Repository
         public K ExecuteScalar<K>(string sql, object param = null)
         {
             return ConnectionFactory.DbConnection.ExecuteScalar<K>(sql, param, ConnectionFactory.DbTransaction);
+        }
+
+        public void InsertBatch(IEnumerable<T> entityList)
+        {
+             ConnectionFactory.DbConnection.InsertBatch(entityList);
         }
 
         #endregion

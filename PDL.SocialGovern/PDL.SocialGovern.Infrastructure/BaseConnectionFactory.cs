@@ -22,12 +22,11 @@ namespace PDL.SocialGovern.Infrastructure
                 if (dbConnection != null)
                     return dbConnection;
 
+                var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["PDLConnection"].ConnectionString);
+                dbConnection = connection as DbConnection;
 
-                if (ConfigurationManager.ConnectionStrings["PDLConnection"].ConnectionString != null)
-                {
-                    var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["PDLConnection"].ConnectionString);
-                    dbConnection = new ProfiledDbConnection(connection as DbConnection, MiniProfiler.Current);
-                }
+                if (ConfigurationManager.AppSettings["IsMiniProfilerEnabled"] == Boolean.TrueString)
+                    dbConnection = new ProfiledDbConnection(dbConnection as DbConnection, MiniProfiler.Current);
 
                 dbConnection.Open();
 

@@ -19,13 +19,33 @@ namespace PDL.SocialGovern.Test
         static void Main(string[] args)
         {
             Register();
-
+            AddBatch();
             //Add();
             //Delete();
             //Update();
-            Query();
+            //Query();
 
 
+        }
+
+        private static void AddBatch()
+        {
+            List<UserInfo> lst = new List<UserInfo>();
+
+            for (int i = 0; i < 10000; i++)
+            {
+                lst.Add(new UserInfo
+                {
+                    Name = "aa" + i,
+                    Address = "Address" + i
+                });
+            }
+
+            using (var scope = container.BeginLifetimeScope())
+            {
+                var userInfoRepo = scope.Resolve<IUserInfoRepository>();
+                userInfoRepo.InsertBatch(lst);
+            }
         }
 
         private static void Query()
@@ -33,7 +53,7 @@ namespace PDL.SocialGovern.Test
             using (var scope = container.BeginLifetimeScope())
             {
                 var userInfoRepo = scope.Resolve<IUserInfoRepository>();
-               // var users = userInfoRepo.Query("select * from UserInfo where Id =@Id", new { Id = 2 });
+                // var users = userInfoRepo.Query("select * from UserInfo where Id =@Id", new { Id = 2 });
                 int total;
                 var userlist = userInfoRepo.GetListPaged(1, 10, "where ID<1000", "ID", out total).ToList();
                 //foreach (var item in users)
@@ -47,7 +67,12 @@ namespace PDL.SocialGovern.Test
 
         private static void Update()
         {
-
+            using (var scope = container.BeginLifetimeScope())
+            {
+                var userInfoRepo = scope.Resolve<IUserInfoRepository>();
+                var rowId = userInfoRepo.Insert<long>(new UserInfo { Address = "sss", Name = "bbb" });
+                Console.WriteLine(rowId);
+            }
         }
 
         private static void Delete()
@@ -72,9 +97,10 @@ namespace PDL.SocialGovern.Test
 
                 using (var scope = container.BeginLifetimeScope())
                 {
-                    userInfoService = scope.Resolve<IUserInfoService>();
-                    userInfoService.AddGetUserInfo(user);
-                    Console.WriteLine("Insert into success:{0}", i);
+
+                    var userInfoRepo = scope.Resolve<IUserInfoRepository>();
+                    var result = userInfoRepo.Save(user);
+                    Console.WriteLine("Insert into success:{0}", result);
                 }
 
             }
