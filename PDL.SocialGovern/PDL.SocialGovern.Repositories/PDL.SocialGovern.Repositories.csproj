@@ -42,6 +42,8 @@
   <ItemGroup>
     <Compile Include="Interfaces\IUserInfoRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Systems\ISys_MenuRepository.cs" />
+    <Compile Include="Systems\Sys_MenuRepository.cs" />
     <Compile Include="UserInfoRepository.cs" />
   </ItemGroup>
   <ItemGroup>

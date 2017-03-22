@@ -42,6 +42,8 @@
   <ItemGroup>
     <Compile Include="IUserInfoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Systems\ISys_MenuService.cs" />
+    <Compile Include="Systems\Sys_MenuService.cs" />
     <Compile Include="UserInfoService.cs" />
   </ItemGroup>
   <ItemGroup>
