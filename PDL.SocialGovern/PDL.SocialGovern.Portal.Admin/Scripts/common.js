@@ -23,12 +23,14 @@ var spgc = $.extend({}, spgc);/* 定义全局对象，类似于命名空间或�
  */
 $.parser.auto = false;
 $(function () {
+    debugger;
     $.messager.progress({
         text: '页面加载中....',
         interval: 3000
     });
     $.parser.parse(window.document);
     window.setTimeout(function () {
+        debugger;
         $.messager.progress('close');
         if (self != parent) {
             window.setTimeout(function () {
@@ -689,8 +691,17 @@ Date.prototype.formatDate = function () {
  */
 $.ajaxSetup({
     type: 'POST',
+    //beforeSend: function () {
+    //    $.messager.progress({
+    //               text: '页面加载中....',
+    //               interval: 3000
+    //           });
+    //},
+    //complete: function () {
+    //    $.messager.progress('close');
+    //},
     error: function (XMLHttpRequest, textStatus, errorThrown) {
         $.messager.progress('close');
-       // $.messager.alert('错误', XMLHttpRequest.responseText);
+        $.messager.alert('错误', XMLHttpRequest.responseText);
     }
 });

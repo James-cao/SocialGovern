@@ -10,8 +10,6 @@ $(function () {
 
 //初始化左侧
 function InitLeftMenu() {
-    debugger;
-
     $.ajax({
         url: 'GetSysMenus',
         type: "post",

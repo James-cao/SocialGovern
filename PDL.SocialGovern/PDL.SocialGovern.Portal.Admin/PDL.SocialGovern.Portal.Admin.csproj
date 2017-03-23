@@ -157,6 +157,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\GPSManagementController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SystemManagementController.cs" />
     <Compile Include="Global.asax.cs">
@@ -1580,6 +1581,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_SystemManagement.cshtml" />
     <Content Include="Views\SystemManagement\Frame.cshtml" />
+    <Content Include="Views\GPSManagement\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
